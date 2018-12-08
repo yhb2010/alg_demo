@@ -61,4 +61,27 @@ public class TrieTree {
 		return fre;
 	}
 
+	public String splitSpell(String spell) {
+        Node node = root;
+        char[] letters = spell.toCharArray();
+        String spells = "";
+        boolean b = true; //是否需要执行i--
+        for (int i = 0; i < letters.length; i++) {
+            if (node.getChildrens().containsKey(letters[i] + "")) {
+                spells += letters[i];
+                node = node.getChildrens().get(letters[i] + "");
+                b = true;
+            } else {
+                if(b){
+                	node = root;
+                	spells += " ";
+                	i--;
+                }
+                b = false;
+            }
+        }
+
+        return spells;
+    }
+
 }
